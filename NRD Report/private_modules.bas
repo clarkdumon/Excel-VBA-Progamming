@@ -2,16 +2,18 @@ Attribute VB_Name = "private_modules"
 Option Explicit
 Public Sub generate_NRD_report()
 'turn off event handlers
+Application.Run "event_handlers.get_time"
 Application.Run "event_handlers.turn_off_events"
 
 'turn data to correct values
 makevalues
-
+generate_raw
 
 
 
 'return event handlers back on
 Application.Run "event_handlers.turn_on_events"
+Application.Run "event_handlers.get_time"
 End Sub
 
 Private Sub makevalues()
@@ -56,7 +58,6 @@ Dim graw As Long: graw = 2
 Dim gstring As String
 
 Application.Run "event_handlers.clean_genRaw"
-Application.Run "event_handlers.get_time"
 genRaw.Range("J:J").NumberFormat = "MM/DD/YY"
 Do Until IsEmpty(raw.Cells(xraw, 1))
 
@@ -66,12 +67,10 @@ Do Until IsEmpty(raw.Cells(xraw, 1))
         genRaw.Cells(graw, 8) = raw.Cells(xraw, 1)
         genRaw.Cells(graw, 9) = raw.Cells(xraw, 3)
         genRaw.Cells(graw, 10) = raw.Cells(xraw, 5)
+        genRaw.Cells(graw, 11) = WorksheetFunction.SumIfs(raw.Range("D:D"), raw.Range("A:A"), genRaw.Cells(graw, 8), raw.Range("C:C"), genRaw.Cells(graw, 9), raw.Range("E:E"), genRaw.Cells(graw, 10))
         graw = graw + 1
     End If
 xraw = xraw + 1: Loop
-
-
-Application.Run "event_handlers.get_time"
 
 End Sub
 

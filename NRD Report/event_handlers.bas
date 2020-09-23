@@ -22,6 +22,7 @@ Private Sub clean_genRaw()
     genRaw.Cells(1, 8) = "name"
     genRaw.Cells(1, 9) = "status"
     genRaw.Cells(1, 10) = "date"
+    genRaw.Cells(1, 11) = "total_duration"
     
 
 End Sub
