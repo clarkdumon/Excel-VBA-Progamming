@@ -6,9 +6,9 @@ Application.Run "event_handlers.get_time"
 Application.Run "event_handlers.turn_off_events"
 
 'turn data to correct values
-makevalues
-generate_raw
-
+Call makevalues
+Call generate_raw
+Call report_over
 
 
 'return event handlers back on
@@ -35,6 +35,35 @@ raw.Cells(1, 5) = "date"
     raw.Cells(x, 5) = FormatDateTime(raw.Cells(x, 2), vbShortDate)
 
 x = x + 1: Loop
+overbreak.Range("A:Z").ClearContents
+overbreak.Cells(1, 1) = "name"
+overbreak.Cells(1, 2) = "status"
+overbreak.Cells(1, 3) = "date"
+overbreak.Cells(1, 4) = "duration"
+overbreak.Range("C:C").NumberFormat = "MM/DD/YY"
+overbreak.Range("D:D").NumberFormat = "H:MM:SS"
+overLunch.Range("A:Z").ClearContents
+overLunch.Cells(1, 1) = "name"
+overLunch.Cells(1, 2) = "status"
+overLunch.Cells(1, 3) = "date"
+overLunch.Cells(1, 4) = "duration"
+overLunch.Range("C:C").NumberFormat = "MM/DD/YY"
+overLunch.Range("D:D").NumberFormat = "H:MM:SS"
+overPersonal.Range("A:Z").ClearContents
+overPersonal.Cells(1, 1) = "name"
+overPersonal.Cells(1, 2) = "status"
+overPersonal.Cells(1, 3) = "date"
+overPersonal.Cells(1, 4) = "duration"
+overPersonal.Range("C:C").NumberFormat = "MM/DD/YY"
+overPersonal.Range("D:D").NumberFormat = "H:MM:SS"
+overTP.Range("A:Z").ClearContents
+overTP.Cells(1, 1) = "name"
+overTP.Cells(1, 2) = "status"
+overTP.Cells(1, 3) = "date"
+overTP.Cells(1, 4) = "duration"
+overTP.Range("C:C").NumberFormat = "MM/DD/YY"
+overTP.Range("D:D").NumberFormat = "H:MM:SS"
+
 
 
 End Sub
@@ -74,19 +103,49 @@ xraw = xraw + 1: Loop
 
 End Sub
 
+Private Sub report_over()
 
-Function find_gstring(findvalue As String) As Boolean
-Dim rng As Range
-On Error GoTo notFound
-Set rng = genRaw.Range("G:G").Find(what:=findvalue)
+Dim oBreak As Long: oBreak = 2
+Dim oLunch As Long: oLunch = 2
+Dim oPersonal As Long: oPersonal = 2
+Dim otp As Long: otp = 2
+Dim graw As Long: graw = 2
 
-    If rng.Address = rng.Address Then
-        find_gstring = True
-        Exit Function
+
+Do Until IsEmpty(genRaw.Cells(graw, 7))
+Dim status As String: status = genRaw.Cells(graw, 9)
+Dim status_d As Double: status_d = genRaw.Cells(graw, 11)
+    If exed_th(status, status_d, status_th(status)) = True Then
+        Select Case status
+            Case "Break"
+                overbreak.Cells(oBreak, 1) = genRaw.Cells(graw, 8)
+                overbreak.Cells(oBreak, 2) = genRaw.Cells(graw, 9)
+                overbreak.Cells(oBreak, 3) = genRaw.Cells(graw, 10)
+                overbreak.Cells(oBreak, 4) = genRaw.Cells(graw, 11)
+                oBreak = oBreak + 1
+            Case "Lunch"
+                overLunch.Cells(oLunch, 1) = genRaw.Cells(graw, 8)
+                overLunch.Cells(oLunch, 2) = genRaw.Cells(graw, 9)
+                overLunch.Cells(oLunch, 3) = genRaw.Cells(graw, 10)
+                overLunch.Cells(oLunch, 4) = genRaw.Cells(graw, 11)
+                oLunch = oLunch + 1
+            Case "Personal"
+                overPersonal.Cells(oPersonal, 1) = genRaw.Cells(graw, 8)
+                overPersonal.Cells(oPersonal, 2) = genRaw.Cells(graw, 9)
+                overPersonal.Cells(oPersonal, 3) = genRaw.Cells(graw, 10)
+                overPersonal.Cells(oPersonal, 4) = genRaw.Cells(graw, 11)
+                oPersonal = oPersonal + 1
+            Case "Ticket-Processing"
+                overTP.Cells(otp, 1) = genRaw.Cells(graw, 8)
+                overTP.Cells(otp, 2) = genRaw.Cells(graw, 9)
+                overTP.Cells(otp, 3) = genRaw.Cells(graw, 10)
+                overTP.Cells(otp, 4) = genRaw.Cells(graw, 11)
+                otp = otp + 1
+        End Select
     End If
+graw = graw + 1: Loop
 
-Exit Function
-notFound:
-find_gstring = False
 
-End Function
+End Sub
+
+

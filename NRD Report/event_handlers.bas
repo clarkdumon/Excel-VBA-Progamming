@@ -27,8 +27,6 @@ Private Sub clean_genRaw()
 
 End Sub
 
-
-
 Private Sub get_time()
 Debug.Print Now
 End Sub
