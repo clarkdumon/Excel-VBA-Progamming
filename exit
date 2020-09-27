@@ -1,0 +1,35 @@
+[33mcommit 1dcdf1bb1bd9c5da6eaac7bb4054a49b20fa7e5b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Maskinegro <clark.dumon@gmail.com>
+Date:   Thu Sep 24 21:49:44 2020 +0800
+
+    Paste Data from Over
+
+[33mcommit 9f4bc91d82567a76f549edb11d8ba90f31b5d154[m
+Author: Maskinegro <clark.dumon@gmail.com>
+Date:   Thu Sep 24 15:05:46 2020 +0800
+
+    Exported Module to .Bas
+
+[33mcommit bb371808cfd0b4f4ca3ce8f0f9aa2b53ea64cd0a[m
+Author: Maskinegro <clark.dumon@gmail.com>
+Date:   Thu Sep 24 15:03:50 2020 +0800
+
+    Shift Coverter Created
+
+[33mcommit ed9dfb12f44615babfe464bceac23de3aa671316[m
+Author: Maskinegro <clark.dumon@gmail.com>
+Date:   Thu Sep 24 06:04:35 2020 +0800
+
+    EH-update & PM-Update
+
+[33mcommit 3edc5a20dbaafed80c592d86ec7dcb4d1d9c753a[m
+Author: Maskinegro <clark.dumon@gmail.com>
+Date:   Thu Sep 24 05:35:13 2020 +0800
+
+    adding event handlers & private procedure
+
+[33mcommit 8dbe6c9c853d5176afcfc783265d0e8e0bb6a305[m
+Author: Maskinegro <clark.dumon@gmail.com>
+Date:   Thu Sep 24 05:31:40 2020 +0800
+
+    NRD Report Excel
